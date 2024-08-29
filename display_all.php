@@ -21,61 +21,20 @@ session_start();
     <!-- css file -->
     <link rel="stylesheet" href="style.css">
     <style>
-    body{
-        overflow-x:hidden;
-    }
-    .logo {
+
+.text-primary{
+  line-height: 2em; /* Adjust as needed */
+
+}
+.logo {
     width: 200px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Center the image */
     margin: 0 auto; /* Center the image */
   }
-    
-    
-  .text-center.fade-in {
-    position: relative;
-    animation: moveLeftToRight 20s linear infinite;
-    line-height: 2em; /* Adjust as needed */
-}
-
-@keyframes moveLeftToRight {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
-
-.text-ccenter.clr {
-    animation: colorChange 2s linear infinite alternate;
-}
-
-@keyframes colorChange {
-    from {
-        color: #ff0000;
-    }
-    to {
-        color: #00ff00;
-    }
-}
-.text-primary{
-  line-height: 2em; /* Adjust as needed */
-
-}
-.video-container {
-  display: flex;
-  justify-content: center;
-}
-
-.video-container video {
-  max-width: 100%;
-  height: auto;
-  margin-right: 20px;
-}
 
 
-   </style>
+    </style>
 </head>
 <body>
 <!--navbar -->
@@ -84,11 +43,6 @@ session_start();
 
     <nav class="navbar navbar-expand-lg navbar-light bg-warning"> <!--bg-info for doing colors look -->
 <img src="./images/logo8.png" alt="" class="logo">
-<!--<video width="320" height="240" controls>
-  <source src="./images/log.mp4" type="video/mp4">
-  
-  Your browser does not support the video tag.
-</video>-->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -101,9 +55,7 @@ session_start();
       <li class="nav-item">
         <a class="nav-link" href="display_all.php">Products</a></a>
       </li>
-
-    
-       <?php
+      <?php
 if(isset($_SESSION['username'])){
   echo "<li class='nav-item'>
         <a class='nav-link' href='./users_area/profile.php'>My Account</a>
@@ -117,48 +69,39 @@ if(isset($_SESSION['username'])){
 }
 
       ?>
-  <li class="nav-item">
+
+<li class="nav-item">
         <a class="nav-link" href="offer.php">Offers</a></a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="locations.php">Our Branches</a></a>
       </li>
+      
 
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Assistant AI</a></a>
-      </li>
-
-  
-     
       <li class="nav-item">
         <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php cart_item() ?></sup></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Total Price: <?php total_cart_price() ?>/-</a>
-      </li>      
+        <a class="nav-link" href="#">Total Price: <?php total_cart_price() ?>৳</a>
+      </li>
+      
       
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="search_product.php" method="get">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search your food" aria-label="Search" name="search_data">
-    <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-</form>
-
+    <form class="form-inline my-2 my-lg-0"><!-- we get horizental rows here -->
+      <input class="form-control mr-sm-2" type="search" placeholder="Search your food" aria-label="Search"><!-- in search i can edit -->
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
   </div>
-  </nav>
-
-<!-- calling cart function -->
-<?php
-cart();
-?>
+</nav>
+</div>
 
 <!-- Second child -->
 <nav class="navbar navbar-expand-lg alert alert-success">
 <div class="text-center">
     <!-- Your content goes here -->
-    <h2 class="text-primary">Welcome to our foodie wonderland</h2>
+    <h2 class="text-primary">Discover Our Latest Innovations</h2>
 </div>
-
     <div class="navbar-collapse justify-content-end"> <!-- Align items to the right -->
         <ul class="navbar-nav font-weight-bold text-center">
             <?php 
@@ -190,20 +133,8 @@ cart();
 <!-- third child -->
 
 <div class="bg-light">
+  <h2 class="text-center">Have a look around</h2>
  
-
-
-<h2 class="text-center font-weight-bold">"Every dish tells a story,every taste creates its own picture"</h2>
-<div class="video-container">
-    <video width="840" height="480" controls>
-      <source src="./images/start33.mp4" type="video/mp4">
-    </video>
-   
-  </div>
-<h3 class="text-center fade-in font-weight-bold text-success">"Hurry! Multiple Offers Running  – Grab Yours Now!"</h3>
-
-  <h4 class="text-center">Experience Gourmet Delights at Your Doorstep – Order Now!</h4>
-  
   
 </div>
 
@@ -217,11 +148,9 @@ cart();
   <!--fetching gproducts    -->
   <?php  
   // calling function
-  getproducts();
+  get_all_products();
   get_unique_categories();
   get_unique_brands();
-  //$ip = getIPAddress();  
-//echo 'User Real IP Address - '.$ip;
   ?>
 
 <!-- row end-->
@@ -239,7 +168,7 @@ cart();
     <ul class="navbar-nav me-auto text-center">
 
       <li class="nav-item bg-info text-center">
-        <a href="#" class="nav-link text-light"><h4>Brands</h4></a>
+        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
 
       </li>
       <?php
@@ -272,46 +201,26 @@ cart();
 
   </div>
 </div>
- 
-<!-- 5th child -->
-
-<div class="bg-light">
-  <h2 class="text-center clr">Satisfy Your Cravings with Just a Click – Watch Our Foodie Videos</h2>
-  
-
-  <video width="320" height="240" controls>
-  <source src="./images/make.mp4" type="video/mp4">
-</video>
-  
-
-  
-<video width="320" height="240" controls>
-  <source src="./images/see.mp4" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="./images/yum.mp4" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="./images/eat.mp4" type="video/mp4">
-</video>
-
-</div>
-<!--6th child-->
-
-<div>
-<h2 class="text-center">Top Bangladeshi</h2>
 
 
-</div>
 
-<
+
+
+
+
+
+
+
+
 
 
 <!-- last child -->
-<!-- include foter-->
-<?php  include("./includes/footer.php")?>
+<div class="bg-warning p-3 text-center">
+    <p>This project is created by shanto -2024</p>
+    <li class="nav-item">
+        <a class="nav-link" href="admin_area/admin_login.php"><p class="text-dark">Login As Admin</p></a></a>
+      </li>
+</div>
 
 </div>
 

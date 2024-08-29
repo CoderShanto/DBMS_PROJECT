@@ -21,61 +21,19 @@ session_start();
     <!-- css file -->
     <link rel="stylesheet" href="style.css">
     <style>
-    body{
-        overflow-x:hidden;
-    }
-    .logo {
+.text-primary{
+  line-height: 2em; /* Adjust as needed */
+
+}
+
+.logo {
     width: 200px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Center the image */
     margin: 0 auto; /* Center the image */
   }
-    
-    
-  .text-center.fade-in {
-    position: relative;
-    animation: moveLeftToRight 20s linear infinite;
-    line-height: 2em; /* Adjust as needed */
-}
 
-@keyframes moveLeftToRight {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
-
-.text-ccenter.clr {
-    animation: colorChange 2s linear infinite alternate;
-}
-
-@keyframes colorChange {
-    from {
-        color: #ff0000;
-    }
-    to {
-        color: #00ff00;
-    }
-}
-.text-primary{
-  line-height: 2em; /* Adjust as needed */
-
-}
-.video-container {
-  display: flex;
-  justify-content: center;
-}
-
-.video-container video {
-  max-width: 100%;
-  height: auto;
-  margin-right: 20px;
-}
-
-
-   </style>
+    </style>
 </head>
 <body>
 <!--navbar -->
@@ -83,12 +41,7 @@ session_start();
     <!--first child -->
 
     <nav class="navbar navbar-expand-lg navbar-light bg-warning"> <!--bg-info for doing colors look -->
-<img src="./images/logo8.png" alt="" class="logo">
-<!--<video width="320" height="240" controls>
-  <source src="./images/log.mp4" type="video/mp4">
-  
-  Your browser does not support the video tag.
-</video>-->
+<img src="./images/loo.png" alt="" class="logo">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -101,62 +54,37 @@ session_start();
       <li class="nav-item">
         <a class="nav-link" href="display_all.php">Products</a></a>
       </li>
-
-    
-       <?php
-if(isset($_SESSION['username'])){
-  echo "<li class='nav-item'>
-        <a class='nav-link' href='./users_area/profile.php'>My Account</a>
-      </li>";
-
-
-}else{
-    echo "<li class='nav-item'>
-  <a class='nav-link' href='./users_area/user_registration.php'>Register</a>
-</li>";
-}
-
-      ?>
-  <li class="nav-item">
-        <a class="nav-link" href="offer.php">Offers</a></a>
-      </li>
-
       <li class="nav-item">
-        <a class="nav-link" href="locations.php">Our Branches</a></a>
+        <a class="nav-link" href="./users_area/user_registration.php">Register</a></a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Assistant AI</a></a>
-      </li>
-
-  
+      <!--<li class="nav-item">
+        <a class="nav-link" href="#">Contact</a></a>
+      </li>-->
      
-      <li class="nav-item">
+     <li class="nav-item">
         <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php cart_item() ?></sup></a>
-      </li>
+      </li> 
       <li class="nav-item">
-        <a class="nav-link" href="#">Total Price: <?php total_cart_price() ?>/-</a>
-      </li>      
+        <a class="nav-link" href="#">Total Price:100৳</a></a>
+      </li>
       
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="search_product.php" method="get">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search your food" aria-label="Search" name="search_data">
-    <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-</form>
+    <form class="form-inline my-2 my-lg-0" action="search_product.php" method="get"><!-- we get horizental rows here -->
+      <input class="form-control mr-sm-2" type="search" placeholder="Search your food" aria-label="Search" name="search_data"><!-- in search i can edit -->
+    
+      <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
 
+
+    </form>
   </div>
-  </nav>
-
-<!-- calling cart function -->
-<?php
-cart();
-?>
+</nav>
+</div>
 
 <!-- Second child -->
 <nav class="navbar navbar-expand-lg alert alert-success">
 <div class="text-center">
     <!-- Your content goes here -->
-    <h2 class="text-primary">Welcome to our foodie wonderland</h2>
+    <h2 class="text-primary">Explore Our Inventory for Your Match</h2>
 </div>
 
     <div class="navbar-collapse justify-content-end"> <!-- Align items to the right -->
@@ -186,24 +114,11 @@ cart();
     </div>
 </nav>
 
-
 <!-- third child -->
 
 <div class="bg-light">
- 
-
-
-<h2 class="text-center font-weight-bold">"Every dish tells a story,every taste creates its own picture"</h2>
-<div class="video-container">
-    <video width="840" height="480" controls>
-      <source src="./images/start33.mp4" type="video/mp4">
-    </video>
-   
-  </div>
-<h3 class="text-center fade-in font-weight-bold text-success">"Hurry! Multiple Offers Running  – Grab Yours Now!"</h3>
-
-  <h4 class="text-center">Experience Gourmet Delights at Your Doorstep – Order Now!</h4>
-  
+  <h3 class="text-center">Foodie Wonderland</h3>
+  <p class="text-center">Discover a world of flavor</p>
   
 </div>
 
@@ -217,11 +132,9 @@ cart();
   <!--fetching gproducts    -->
   <?php  
   // calling function
-  getproducts();
+  search_product();
   get_unique_categories();
   get_unique_brands();
-  //$ip = getIPAddress();  
-//echo 'User Real IP Address - '.$ip;
   ?>
 
 <!-- row end-->
@@ -239,7 +152,7 @@ cart();
     <ul class="navbar-nav me-auto text-center">
 
       <li class="nav-item bg-info text-center">
-        <a href="#" class="nav-link text-light"><h4>Brands</h4></a>
+        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
 
       </li>
       <?php
@@ -272,41 +185,6 @@ cart();
 
   </div>
 </div>
- 
-<!-- 5th child -->
-
-<div class="bg-light">
-  <h2 class="text-center clr">Satisfy Your Cravings with Just a Click – Watch Our Foodie Videos</h2>
-  
-
-  <video width="320" height="240" controls>
-  <source src="./images/make.mp4" type="video/mp4">
-</video>
-  
-
-  
-<video width="320" height="240" controls>
-  <source src="./images/see.mp4" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="./images/yum.mp4" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="./images/eat.mp4" type="video/mp4">
-</video>
-
-</div>
-<!--6th child-->
-
-<div>
-<h2 class="text-center">Top Bangladeshi</h2>
-
-
-</div>
-
-<
 
 
 <!-- last child -->
